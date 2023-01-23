@@ -393,6 +393,7 @@ function onAddTextTouch(event) {
   } else { 
     canvas.addEventListener("touchstart", onStrokeTouchStart, { passive: false });
     canvas.addEventListener("touchmove", onStrokeTouchMove, { passive: false });
+    canvas.addEventListener("touchmove", onShapeTouchMove, { passive: false });
   }
 }
 
