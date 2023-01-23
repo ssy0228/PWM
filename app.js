@@ -372,9 +372,11 @@ function onAddTextMouse(event) {
     ctxs.fillText(message, event.offsetX, event.offsetY);
     ctxs.restore();
     canvas.removeEventListener("mousemove", onStrokeMouse);
+    canvas.removeEventListener("mousemove", onShapeMouse);
   }
   else { 
     canvas.addEventListener("mousemove", onStrokeMouse);
+    canvas.addEventListener("mousemove", onShapeMouse);
   }
 }
 
@@ -387,6 +389,7 @@ function onAddTextTouch(event) {
     ctxs.restore();
     canvas.removeEventListener("touchstart", onStrokeTouchStart, { passive: false });
     canvas.removeEventListener("touchmove", onStrokeTouchMove, { passive: false });
+    canvas.removeEventListener("touchmove", onShapeTouchMove, { passive: false });
   } else { 
     canvas.addEventListener("touchstart", onStrokeTouchStart, { passive: false });
     canvas.addEventListener("touchmove", onStrokeTouchMove, { passive: false });
