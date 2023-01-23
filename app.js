@@ -108,7 +108,7 @@ if (window.navigator.maxTouchPoints === 0) {
   canvas.addEventListener("mousemove", onStrokeMouse);
   canvas.addEventListener("mousedown", onStartDrawing);
   canvas.addEventListener("mouseup", onCancleDrawing);
-  canvas.addEventListener("dblclick", onAddText);
+
   defaultColors.forEach((item) => {
     item.addEventListener("mousedown", onChangeColor);
   });
@@ -117,7 +117,6 @@ if (window.navigator.maxTouchPoints === 0) {
   canvas.addEventListener("touchmove", onStrokeTouchMove, { passive: false });
   canvas.addEventListener("touchstart", onStartDrawing, { passive: false });
   canvas.addEventListener("touchend", onCancleDrawing, { passive: false });
-  canvas.addEventListener("touchstart", onAddText, { passive: false });
   defaultColors.forEach((item) => {
     item.addEventListener("touchstart", onChangeColor, { passive: false });
   });
@@ -189,14 +188,13 @@ function onPen() {
 }
 
 function onEraser() {
-  Status.innerText = "You can Draw!";
   if (window.navigator.maxTouchPoints === 0) {
     canvas.addEventListener("mousemove", onStrokeMouse);
-    canvas.removeEventListener("mousemove", onShape);
+    canvas.removeEventListener("mousemove", onShapeMouse);
   } else {
     canvas.addEventListener("touchstart", onStrokeTouchStart, { passive: false });
     canvas.addEventListener("touchmove", onStrokeTouchMove, { passive: false });
-    canvas.removeEventListener("touchstart", onShape), { passive: false };
+    canvas.removeEventListener("touchstart", onShapeTouchMove), { passive: false };
   }
 }
 
@@ -368,19 +366,32 @@ const ImageUp = document.querySelector("#upload-file");
 const SaveBtn = document.querySelector(".save-btn");
 
 // text, image upload, file save
-function onAddText(event) {
+function onAddTextMouse(event) {
   const message = text.value;
   if (message != "") {
     ctxs.save();
     ctxs.lineWidth = 1;
-    if (window.navigator.maxTouchPoints === 0) {
-      ctxs.fillText(message, event.offsetX, event.offsetY);
-    } else {
-      ctxs.fillText(event.touches[0].clientX - window.scrollX - canvas.offsetLeft, event.touches[0].clientY - window.scrollY - canvas.offsetTop);
-    }
+    ctxs.fillText(message, event.offsetX, event.offsetY);
     ctxs.restore();
   }
+  canvas.removeEventListener("mousemove", onStrokeMouse);
 }
+
+function onAddTextTouch(event) {
+  const message = text.value;
+  if (message != "") {
+    ctxs.save();
+    ctxs.lineWidth = 1;
+    ctxs.fillText(message, event.touches[0].clientX - canvas.offsetLeft, event.touches[0].clientY - canvas.offsetTop);
+    ctxs.restore();
+    canvas.removeEventListener("touchstart", onStrokeTouchStart, { passive: false });
+    canvas.removeEventListener("touchmove", onStrokeTouchMove, { passive: false });
+  } else { 
+    canvas.addEventListener("touchstart", onStrokeTouchStart, { passive: false });
+    canvas.addEventListener("touchmove", onStrokeTouchMove, { passive: false });
+  }
+}
+
 
 function onFileUp_Change(event) {
   const file = event.target.files[0];
@@ -404,8 +415,10 @@ function onFileSave() {
 ImageUp.addEventListener("change", onFileUp_Change);
 if (window.navigator.maxTouchPoints === 0) {
   SaveBtn.addEventListener("mousedown", onFileSave);
+  canvas.addEventListener("dblclick", onAddTextMouse);
 } else {
   SaveBtn.addEventListener("touchstart", onFileSave, { passive: false });
+  canvas.addEventListener("touchstart", onAddTextTouch, {passive: false});
 }
 
 
