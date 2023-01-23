@@ -1915,7 +1915,9 @@ button.alert-n {
       align-self: center;
     }
   }
+
   @media (orientation: landscape) and (hover:hover) and (pointer:fine) {
+
     body {
       justify-content: center;
       padding: 20px;
