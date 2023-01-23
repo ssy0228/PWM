@@ -58,6 +58,7 @@ function onStrokeTouchMove(event) {
 
 function onShapeMouse(event) {
   if (Drawing) {
+    Drawing = true;
     ctxs.lineTo(event.offsetX, event.offsetY);
     ctxs.fill();
     return;
@@ -106,7 +107,6 @@ if (window.navigator.maxTouchPoints === 0) {
   canvas.addEventListener("mousemove", onStrokeMouse);
   canvas.addEventListener("mousedown", onStartDrawing);
   canvas.addEventListener("mouseup", onCancleDrawing);
-
   defaultColors.forEach((item) => {
     item.addEventListener("mousedown", onChangeColor);
   });
@@ -371,6 +371,10 @@ function onAddTextMouse(event) {
     ctxs.lineWidth = 1;
     ctxs.fillText(message, event.offsetX, event.offsetY);
     ctxs.restore();
+    canvas.removeEventListener("mousemove", onStrokeMouse);
+  }
+  else { 
+    canvas.addEventListener("mousemove", onStrokeMouse);
   }
 }
 
