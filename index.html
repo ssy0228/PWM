@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paint With Meme</title>
+  <link rel="stylesheet" href="reset.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1 class="blind">Let's Make A Meme!</h1>
+  <canvas></canvas>
+  <div class="color-options">
+    <label for="color-option" class="color"><span class="title">🎨</span><input type="color" id="color-option" value="#222222"/></label>
+    <div class="color-option one" data-color="#c0392b"></div>
+    <div class="color-option two" data-color="#e67e22"></div>
+    <div class="color-option three" data-color="#f1c40f"></div>
+    <div class="color-option four" data-color="#27ae60"></div>
+    <div class="color-option five" data-color="#2980b9"></div>
+    <div class="color-option six" data-color="#8e44ad"></div>
+    <div class="color-option seven" data-color="#16a085"></div>
+    <div class="color-option eight" data-color="#2c3e50"></div>
+    <div class="color-option nine" data-color="#ecf0f1"></div>
+    <div class="color-option ten" data-color="#95a5a6"></div>
+  </div>
+  <div class="option-btns">
+    <span class="tool_title">Tools</span>
+    <button type="button" class="pen">✏️</button>
+    <button type="button" class="font"><img src="images/font-size.png" alt="font"></button>
+    <button type="button" class="erase"><img src="images/eraser.png" alt="Eraser"></button>
+    <button type="button" class="shape"><img src="images/shapes.png" alt="shape"></button>
+    <button type="button" class="fill"><img src="images/paint-bucket2.png" alt="PainterBucket"></button>
+    <label for="upload-file" class="upload">🖼️<input type="file" id="upload-file" accept="image/*"></label>
+    <button type="button" class="save-btn">💾</button>    
+    <label for="text" class="blind">text</label>
+    <input type="text" id="text" placeholder="Add your comments :)">
+    <span class="status">You can Draw!</span>
+    <div class="tools">
+      <div class="for-pen off">
+        <button type="button" class="pen-rect">■</button>
+        <button type="button" class="pen-round">●</button>
+        <label for="pen-size">Pen/Brush Size</label>
+        <input type="range" id="pen-size" min="1" max="20" value="5" step="0.5">
+      </div>
+      <div class="for-font off">
+        <div class="select-area ">
+          <span class="selection"></span>
+          <button type="button" class="arrow"><span class="">🛆</span></button>
+        </div>
+        <ul class="list close">
+          <li>
+            <button type="button" class="defaultFont">NanumGothic</button>
+          </li>
+          <li>
+            <button type="button" class="userFont">Hahmlet</button>
+          </li>
+        </ul>
+        <button type="button" class="normal" title="normal"><img src="images/font-it.png" alt="bold"></button>
+        <button type="button" class="bold" title="bold"><img src="images/font-adjustment.png" alt="bold"></button>
+        <button type="button" class="italic" title="italic"><img src="images/font-it.png" alt="bold"></button>
+        <label for="font-size">Font size</label>
+        <input type="range" id="font-size" min="10" max="70" value="20" step="1">
+      </div>
+      <div class="for-erase off">
+        <button type="button" class="rect">□</button>
+        <button type="button" class="circle">○</button>
+        <button type="button" class="clear-btn"><img src="images/paint-bucket.png" alt="WaterBucket"></button>
+        <label for="eraser-size">Eraser Size</label>
+        <input type="range" id="eraser-size" min="1" max="50" value="5" step="0.5">
+        <div class="erase-alert off">
+          <span class="alert-q">Canvas clear?</span>
+          <button type="button" class="alert-y">Yes</button>
+          <button type="button" class="alert-n">No</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ul class="blind this_is_license_of_img">
+    <li><a href="https://www.flaticon.com/free-icons/clean" title="clean icons">Clean icons created by Kiranshastry - Flaticon</a></li>
+    <li><a href="https://www.flaticon.com/free-icons/paint-bucket" title="paint bucket icons">Paint bucket icons created by justicon - Flaticon</a></li>
+    <li><a href="https://www.flaticon.com/free-icons/paint-bucket" title="paint bucket icons">Paint bucket icons created by Freepik - Flaticon</a></li>
+    <li><a href="https://www.flaticon.com/free-icons/size" title="size icons">Size icons created by Freepik - Flaticon</a></li>
+    <li><a href="https://www.flaticon.com/free-icons/hexagon" title="hexagon icons">Hexagon icons created by Freepik - Flaticon</a></li>
+    <li><a href="https://www.flaticon.com/free-icons/font" title="font icons">Font icons created by DinosoftLabs - Flaticon</a></li>
+    <li><a href="https://www.flaticon.com/free-icons/font-size" title="font size icons">Font size icons created by Md Tanvirul Haque - Flaticon</a></li>
+    <li><a href="https://www.flaticon.com/free-icons/font" title="font icons">Font icons created by Icon Hubs - Flaticon</a></li>
+  </ul>
+  <script src="app.js"></script>
+</body>
+</html>

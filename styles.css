@@ -1,0 +1,1956 @@
+@import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@300;400;500;600;700&display=swap');
+
+
+html {
+  width: 100%;
+  height: 100%;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  html {
+    width: 100%;
+    height: 100%;
+    overflow: hidden !important;
+  }
+}
+
+body {
+  display: flex;
+  background-color: silver;
+}
+
+canvas {
+  border-radius: 15px;
+  background-color: #fff;
+  padding: 0;
+  /* width: 100%;
+  height: 100%; */
+}
+
+button {
+  all: unset;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  color: #222;
+  background-color: mistyrose;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform linear .1s;
+}
+
+button>img {
+  width: 20px;
+  height: 20px;
+}
+
+.blind {
+  display: none;
+}
+
+.color-options {
+  display: flex;
+}
+
+label.color {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+span.title {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+input#color-option {
+  all: unset;
+  border: none;
+  padding: 0;
+  margin: -10px;
+  appearance: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+}
+
+.color-option {
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform linear .1s;
+}
+
+.one {
+  background-color: #c0392b;
+}
+.two {
+  background-color: #e67e22;
+}
+.three {
+  background-color: #f1c40f;
+}
+.four {
+  background-color: #27ae60;
+}
+.five {
+  background-color: #2980b9;
+}
+.six {
+  background-color: #8e44ad;
+}
+.seven {
+  background-color: #16a085;
+}
+.eight {
+  background-color: #2c3e50;
+}
+.nine {
+  background-color: #ecf0f1;
+}
+.ten {
+  background-color: #95a5a6;
+}
+
+.option-btns {
+  display: -moz-grid;
+  display: grid;
+}
+
+span.tool_title {
+  font-size: 16px;
+  text-align: center;
+}
+
+label.upload {
+  display: flex;
+  border-radius: 10px;
+  background-color: mistyrose;
+  color: #fff;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  transition: transform linear .1s;
+}
+
+@media (hover:hover) and (pointer: fine) {
+  label.color:hover,
+  .color-option:hover,
+  button:hover {
+    transform: scale(1.2);
+    transform-origin: center;
+  }
+
+  label.upload:hover {
+    transform: scale(1.2);
+    transform-origin: center;
+  }
+}
+
+input#upload-file {
+  appearance: none;
+  display: none;
+}
+
+input#text {
+  all: unset;
+  background-color: mistyrose;
+  border-radius: 10px;
+  color: #222;
+  text-indent: 10px;
+}
+
+input::placeholder {
+  color: #222;
+  opacity: 0.5;
+}
+
+.tools {
+  position: relative;
+  padding: 10px;
+  width: calc(100% - 20px);
+  height: calc(100% - 20px);
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.tools>div {
+  position: absolute;
+  top: 10px;
+  display: -moz-grid;
+  display: grid;
+  width: calc(100% - 40px);
+  height: auto;
+  padding: 10px;
+  border-radius: 10px;
+  background-color:snow;
+}
+
+.tools>div.off {
+  display: none;
+}
+
+.tools>div>label {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+div.select-area {
+  display: flex;
+  width: 100%;
+  background-color: mistyrose;
+  border-bottom: 1px dashed lightcoral;
+  overflow: hidden;
+  border-radius: 10px;
+  position: relative;
+}
+
+span.selection {
+  width: 80%;
+  padding: 10px;
+  overflow: hidden;
+}
+
+button.arrow {
+  width: 20%;
+  padding: 2px;
+  border-radius: 3px;
+  font-size: 18px;
+  background-color:lightpink;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: none;
+}
+
+button.arrow>span {
+  transform: rotate(180deg);
+}
+
+button.arrow>span.clicked {
+  transform: rotate(0deg);
+}
+
+ul.list {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  position: absolute;
+  z-index: 1;
+  overflow: hidden;
+}
+
+ul.list.close {
+  display: none;
+}
+
+li {
+  width: 100%;
+}
+
+button.defaultFont {
+  font-family: 'Nanum Gothic', sans-serif;
+  font-size: 14px;
+  color: #222;
+  border-radius: 0;
+}
+
+button.userFont {
+  font-family: 'Hahmlet', serif;
+  font-size: 14px;
+  color: #222;
+  border-radius: 0 0 10px 10px;
+}
+.defaultFont:hover,
+.userFont:hover {
+  transform: none;
+  background-color:thistle;
+}
+
+.italic>img {
+  transform:skewX(-10deg); 
+}
+
+.erase-alert {
+  display: -moz-grid;
+  display: grid;
+  background-color: whitesmoke;
+  border-radius: 10px;
+  padding: 10px;
+  width: 90%;
+  height: auto;
+}
+
+.erase-alert.off {
+  display: none;
+}
+
+
+button.alert-y,
+button.alert-n {
+  font-size: 13px;
+}
+
+.status {
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+/* PC browser */
+@media (min-width: 1251px) {
+  body {
+    justify-content: center;
+    padding: 20px;
+    column-gap: 20px;
+  }
+  canvas {
+    order: 3;
+    width: 800px;
+    height: 800px;
+  }
+  .option-btns,
+  .color-options {
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .color-options {
+    order: 1;
+  }
+
+  .option-btns {
+    order: 4;
+    grid-template-rows: repeat(5, 50px) 1fr;
+    grid-template-columns: repeat(4, 50px);
+    gap: 5px;
+  }
+  
+  label.color {
+    display: flex;
+    width: 45px;
+    height: 45px;
+    border: 5px solid #fff;
+    border-radius: 50%;
+    transition: transform linear .1s;
+  }
+
+  span.title {
+    font-size: 20px;
+  }
+
+
+  .color-option {
+    width: 45px;
+    height: 45px;
+    border: 5px solid #fff;
+  } 
+
+  span.tool_title {
+    grid-row: 1;
+    grid-column: 1 / 5;
+  }
+
+  button {
+    width: 50px;
+    height: 50px;
+    transition: transform linear .1s;
+  }
+
+  label.upload {
+    width: 50px;
+    height: 50px;
+  }
+
+  input#text {
+    grid-row: 4;
+    grid-column: 1 / 5;
+    height: 50px;
+  }
+
+  .status {
+    grid-row: 5;
+    grid-column: 1/ 5;
+    height: 50px;
+  }
+
+  .tools {
+    grid-row: 6;
+    grid-column: 1 / 5;
+  }
+
+  .for-pen {
+    grid-template-columns: repeat(2, 50px);
+    grid-template-rows: 50px repeat(2, 1fr);
+    column-gap: 5px;
+  }
+
+  .for-font {
+    grid-template-columns: repeat(3, 50px);
+    grid-template-rows: auto 50px repeat(2, 1fr);
+    gap: 5px;
+    justify-content: space-evenly;
+  }
+
+  div.select-area {
+    grid-row: 1;
+    grid-column: 1 / 4;
+    width: 100%;
+    height: 30px;
+  }
+  
+  button.arrow {
+    height: 30px;
+  }
+  
+  ul.list {
+    width: 90%;
+    top: 41px;
+    justify-self: center;
+  }
+  
+  li {
+    height: 30px;
+  }
+
+  .defaultFont,
+  .userFont {
+    width: 100%;
+    height: 30px;
+    justify-content: left;
+    text-indent: 10px;
+  }
+
+  .bold {
+    grid-row: 2;
+    grid-column: 2;
+  }
+  .italic {
+    grid-row: 2;
+    grid-column: 3;
+  }
+
+
+  .for-erase {
+    grid-template-columns: repeat(2, 50px);
+    grid-template-rows: 50px repeat(2, 1fr);
+    gap: 5px;
+    justify-content: space-evenly;
+  }
+
+  .for-erase>label {
+    grid-row: 2;
+    grid-column: 1 / 4;
+  }
+
+  .erase-alert {
+    grid-column: 1/ 4;
+    grid-template-columns: repeat(2, 50px);
+    grid-template-rows: repeat(2, 50px);
+    justify-content: space-evenly;
+  }
+
+  span.alert-q {
+    grid-row: 1;
+    grid-column: 1 / 3;
+    align-self: center;
+  }
+
+  .pen-rect {
+    font-size: 20px;
+  }
+  .pen-round {
+    font-size: 20px;
+  }
+
+  .tools>div>label {
+    justify-content: left;
+    grid-column: 1 / 3; 
+  }
+
+  input#pen-size,
+  input#eraser-size,
+  input#font-size {
+    grid-column: 1 / 4;
+    align-self: center;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1250px) {
+  body {
+    justify-content: center;
+    padding: 20px;
+    column-gap: 20px;
+  }
+
+  canvas {
+    order: 2;
+    width: 600px;
+    height: 800px;
+  }
+
+  .option-btns,
+  .color-options {
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .color-options {
+    order: 1;
+  }
+  .option-btns {
+    order: 3;
+    grid-template-rows: repeat(5, 50px) 1fr;
+    grid-template-columns: repeat(4, 50px);
+    gap: 5px;
+  }
+  
+  label.color {
+    display: flex;
+    width: 45px;
+    height: 45px;
+    border: 5px solid #fff;
+    border-radius: 50%;
+  }
+
+  span.title {
+    font-size: 20px;
+  }
+
+  .color-option {
+    width: 45px;
+    height: 45px;
+    border: 5px solid #fff;
+  } 
+
+  span.tool_title {
+    grid-row: 1;
+    grid-column: 1 / 5;
+  }
+
+  button {
+    width: 50px;
+    height: 50px;
+  }
+
+  label.upload {
+    width: 50px;
+    height: 50px;
+  }
+
+  input#text {
+    grid-row: 4;
+    grid-column: 1 / 5;
+    height: 50px;
+  }
+
+  .status {
+    grid-row: 5;
+    grid-column: 1/ 5;
+    height: 50px;
+  }
+
+  .tools {
+    grid-row: 6;
+    grid-column: 1 / 5;
+  }
+
+  .for-pen {
+    grid-template-columns: repeat(2, 50px);
+    grid-template-rows: 50px repeat(2, 1fr);
+    gap: 5px;
+  }
+
+  .for-font {
+    grid-template-columns: repeat(3, 50px);
+    grid-template-rows: auto 50px repeat(2, 1fr);
+    gap: 5px;
+    justify-content: space-evenly;
+  }
+
+  div.select-area {
+    grid-row: 1;
+    grid-column: 1 / 4;
+    width: 100%;
+    height: 30px;
+  }
+  
+  button.arrow {
+    height: 30px;
+  }
+  
+  ul.list {
+    width: 90%;
+    top: 41px;
+    justify-self: center;
+  }
+  
+  li {
+    height: 30px;
+  }
+
+  .defaultFont,
+  .userFont {
+    width: 100%;
+    height: 30px;
+    justify-content: left;
+    text-indent: 10px;
+  }
+
+  .bold {
+    grid-row: 2;
+    grid-column: 2;
+  }
+  .italic {
+    grid-row: 2;
+    grid-column: 3;
+  }
+
+  .for-erase {
+    grid-template-columns: repeat(3, 50px);
+    grid-template-rows: 50px repeat(2, 1fr);
+    gap: 5px;
+    justify-content: space-evenly;
+  }
+  .for-erase>label {
+    grid-row: 2;
+    grid-column: 1 / 4;
+  }
+
+  .erase-alert {
+    grid-column: 1/ 4;
+    grid-template-columns: repeat(2, 50px);
+    grid-template-rows: repeat(2, 50px);
+    justify-content: space-evenly;
+  }
+
+  span.alert-q {
+    grid-row: 1;
+    grid-column: 1 / 3;
+    align-self: center;
+  }
+
+  .pen-rect {
+    font-size: 20px;
+  }
+  .pen-round {
+    font-size: 20px;
+  }
+
+  .tools>div>label {
+    grid-column: 1 / 3; 
+    justify-content: left;
+  }
+
+  input#pen-size,
+  input#eraser-size,
+  input#font-size {
+    grid-column: 1 / 4;
+    align-self: center;
+  }
+}
+
+/* tablet */
+@media (min-width: 931px) and (max-width: 1024px) {
+  @media (orientation: landscape) {
+    body {
+      justify-content: center;
+      padding: 20px;
+      column-gap: 20px;
+    }
+  
+    canvas {
+      order: 2;
+      width: 600px;
+      height: 90vh;
+    }
+  
+    .option-btns,
+    .color-options {
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+  
+    .color-options {
+      order: 1;
+    }
+    .option-btns {
+      order: 3;
+      grid-template-rows: repeat(5, 50px) 1fr;
+      grid-template-columns: repeat(4, 50px);
+      gap: 5px;
+    }
+    
+    label.color {
+      display: flex;
+      width: 45px;
+      height: 45px;
+      border: 5px solid #fff;
+      border-radius: 50%;
+    }
+  
+    span.title {
+      font-size: 20px;
+    }
+  
+    .color-option {
+      width: 45px;
+      height: 45px;
+      border: 5px solid #fff;
+    } 
+  
+    span.tool_title {
+      grid-row: 1;
+      grid-column: 1 / 5;
+    }
+  
+    button {
+      width: 50px;
+      height: 50px;
+    }
+  
+    label.upload {
+      width: 50px;
+      height: 50px;
+    }
+  
+    input#text {
+      grid-row: 4;
+      grid-column: 1 / 5;
+      height: 50px;
+    }
+  
+    .status {
+      grid-row: 5;
+      grid-column: 1/ 5;
+      height: 50px;
+    }
+  
+    .tools {
+      grid-row: 6;
+      grid-column: 1 / 5;
+    }
+  
+    .for-pen {
+      grid-template-columns: repeat(2, 50px);
+      grid-template-rows: 50px repeat(2, 1fr);
+      gap: 5px;
+    }
+  
+    .for-font {
+      grid-template-columns: repeat(3, 50px);
+      grid-template-rows: auto 50px repeat(2, 1fr);
+      gap: 5px;
+      justify-content: space-evenly;
+    }
+  
+    div.select-area {
+      grid-row: 1;
+      grid-column: 1 / 4;
+      width: 100%;
+      height: 30px;
+    }
+    
+    button.arrow {
+      height: 30px;
+    }
+    
+    ul.list {
+      width: 90%;
+      top: 41px;
+      justify-self: center;
+    }
+    
+    li {
+      height: 30px;
+    }
+  
+    .defaultFont,
+    .userFont {
+      width: 100%;
+      height: 30px;
+      justify-content: left;
+      text-indent: 10px;
+    }
+  
+    .bold {
+      grid-row: 2;
+      grid-column: 2;
+    }
+    .italic {
+      grid-row: 2;
+      grid-column: 3;
+    }
+  
+    .for-erase {
+      grid-template-columns: repeat(3, 50px);
+      grid-template-rows: 50px repeat(2, 1fr);
+      gap: 5px;
+      justify-content: space-evenly;
+    }
+    .for-erase>label {
+      grid-row: 2;
+      grid-column: 1 / 4;
+    }
+  
+    .erase-alert {
+      grid-column: 1/ 4;
+      grid-template-columns: repeat(2, 50px);
+      grid-template-rows: repeat(2, 50px);
+      justify-content: space-evenly;
+    }
+  
+    span.alert-q {
+      grid-row: 1;
+      grid-column: 1 / 3;
+      align-self: center;
+    }
+  
+    .pen-rect {
+      font-size: 20px;
+    }
+    .pen-round {
+      font-size: 20px;
+    }
+  
+    .tools>div>label {
+      grid-column: 1 / 3; 
+      justify-content: left;
+    }
+  
+    input#pen-size,
+    input#eraser-size,
+    input#font-size {
+      grid-column: 1 / 4;
+      align-self: center;
+    }
+  }
+  @media (orientation: portrait) {
+    @media (max-height: 960px) {
+      body {
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 20px;
+      }
+    
+      canvas {
+        order: 3;
+        width: 100%;
+        height: 690px;
+      }
+    
+      .option-btns,
+      .color-options {
+        justify-content: space-evenly;
+        align-items: center;
+      }
+    
+      .color-options {
+        order: 1;
+      }
+    
+      .option-btns {
+        order: 2;
+        grid-template-columns: 70px repeat(8, 40px) calc(100% - 430px);
+        grid-template-rows: repeat(2, 40px);
+        justify-content: flex-start;
+        padding: 5px;
+        gap: 5px;
+      }
+      
+      label.color {
+        display: flex;
+        width: 30px;
+        height: 30px;
+        border: 5px solid #fff;
+        border-radius: 50%;
+      }
+    
+      .color-option {
+        width: 30px;
+        height: 30px; 
+        border: 5px solid #fff;
+      } 
+    
+      span.title {
+        font-size: 20px;
+      }
+    
+      span.tool_title {
+        grid-row: 1 / 3;
+        grid-column: 1;
+        text-align: center;
+      }
+    
+      button {
+        width: 40px;
+        height: 40px;
+      }
+    
+      label.upload {
+        width: 40px;
+        height: 40px;
+      }
+    
+      input#text {
+        height: 40px;
+        grid-row: 2;
+        grid-column: 2/7;
+      }
+    
+      .status {
+        grid-row: 2;
+        grid-column: 7 / 10;
+        height: 40px;
+      }
+    
+      .tools {
+        grid-row: 1 / 3;
+        grid-column: 10;
+      }
+    
+      .for-pen {
+        grid-template-columns: repeat(2, 40px) auto 1fr;
+        grid-template-rows: 40px;
+        column-gap: 5px;
+      }
+    
+      .for-font {
+        grid-template-columns: 110px repeat(3, 40px) auto 1fr;
+        grid-template-rows: 40px;
+        gap: 5px;
+      }
+    
+      div.select-area {
+        align-self: center;
+        grid-row: 1;
+        grid-column: 1;
+      }
+    
+      .tools>div>label {
+        justify-content: center;
+      }
+    
+      input#font-size {
+        grid-column: 6;
+      }
+    
+    
+      .for-erase {
+        grid-template-columns: repeat(3, 40px) auto 1fr;
+        grid-template-rows: 40px;
+        gap: 5px;
+      }
+    
+      .erase-alert {
+        width: 95%;
+        grid-row: 2;
+        grid-column: 1/7;
+        grid-template-columns: auto repeat(2, 40px);
+        grid-template-rows: 40px;
+        justify-content: space-evenly;
+      }
+    
+      .for-pen,
+      .for-font,
+      .for-erase {
+        width: 100%;
+        height: 100%;
+      }
+    
+      div.select-area {
+        width: 110px;
+        height: 30px;
+      }
+      
+      button.arrow {
+        height: 30px;
+      }
+      
+      ul.list {
+        width: 110px;
+        top: 46px;
+        left: 10px;
+      }
+      
+      li {
+        height: 30px;
+      }
+    
+      .defaultFont,
+      .userFont {
+        width: 100%;
+        height: 30px;
+        justify-content: left;
+        text-indent: 8px;
+      }
+    
+      span.alert-q {
+        grid-row: 1;
+        grid-column: 1 / 3;
+        align-self: center;
+      }
+    
+      button.alert-y,
+      button.alert-n {
+        grid-row: 1;
+      }
+    
+      .pen-rect,
+      .pen-round,
+      .circle,
+      .rect,
+      .etc {
+        font-size: 20px;
+      }
+    
+      input#pen-size,
+      input#eraser-size,
+      input#font-size {
+        align-self: center;
+      }
+    }
+    @media (min-height: 961px) {
+      body {
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 20px;
+      }
+    
+      canvas {
+        order: 3;
+        width: 100%;
+        height: 80vh;
+      }
+    
+      .option-btns,
+      .color-options {
+        justify-content: space-evenly;
+        align-items: center;
+      }
+    
+      .color-options {
+        order: 1;
+      }
+    
+      .option-btns {
+        order: 2;
+        grid-template-columns: 70px repeat(8, 40px) calc(100% - 430px);
+        grid-template-rows: repeat(2, 40px);
+        justify-content: flex-start;
+        padding: 5px;
+        gap: 5px;
+      }
+      
+      label.color {
+        display: flex;
+        width: 30px;
+        height: 30px;
+        border: 5px solid #fff;
+        border-radius: 50%;
+      }
+    
+      .color-option {
+        width: 30px;
+        height: 30px; 
+        border: 5px solid #fff;
+      } 
+    
+      span.title {
+        font-size: 20px;
+      }
+    
+      span.tool_title {
+        grid-row: 1 / 3;
+        grid-column: 1;
+        text-align: center;
+      }
+    
+      button {
+        width: 40px;
+        height: 40px;
+      }
+    
+      label.upload {
+        width: 40px;
+        height: 40px;
+      }
+    
+      input#text {
+        height: 40px;
+        grid-row: 2;
+        grid-column: 2/7;
+      }
+    
+      .status {
+        grid-row: 2;
+        grid-column: 7 / 10;
+        height: 40px;
+      }
+    
+      .tools {
+        grid-row: 1 / 3;
+        grid-column: 10;
+      }
+    
+      .for-pen {
+        grid-template-columns: repeat(2, 40px) auto 1fr;
+        grid-template-rows: 40px;
+        column-gap: 5px;
+      }
+    
+      .for-font {
+        grid-template-columns: 110px repeat(3, 40px) auto 1fr;
+        grid-template-rows: 40px;
+        gap: 5px;
+      }
+    
+      div.select-area {
+        align-self: center;
+        grid-row: 1;
+        grid-column: 1;
+      }
+    
+      .tools>div>label {
+        justify-content: center;
+      }
+    
+      input#font-size {
+        grid-column: 6;
+      }
+    
+    
+      .for-erase {
+        grid-template-columns: repeat(3, 40px) auto 1fr;
+        grid-template-rows: 40px;
+        gap: 5px;
+      }
+    
+      .erase-alert {
+        width: 95%;
+        grid-row: 2;
+        grid-column: 1/7;
+        grid-template-columns: auto repeat(2, 40px);
+        grid-template-rows: 40px;
+        justify-content: space-evenly;
+      }
+    
+      .for-pen,
+      .for-font,
+      .for-erase {
+        width: 100%;
+        height: 100%;
+      }
+    
+      div.select-area {
+        width: 110px;
+        height: 30px;
+      }
+      
+      button.arrow {
+        height: 30px;
+      }
+      
+      ul.list {
+        width: 110px;
+        top: 46px;
+        left: 10px;
+      }
+      
+      li {
+        height: 30px;
+      }
+    
+      .defaultFont,
+      .userFont {
+        width: 100%;
+        height: 30px;
+        justify-content: left;
+        text-indent: 8px;
+      }
+    
+      span.alert-q {
+        grid-row: 1;
+        grid-column: 1 / 3;
+        align-self: center;
+      }
+    
+      button.alert-y,
+      button.alert-n {
+        grid-row: 1;
+      }
+    
+      .pen-rect,
+      .pen-round,
+      .circle,
+      .rect,
+      .etc {
+        font-size: 20px;
+      }
+    
+      input#pen-size,
+      input#eraser-size,
+      input#font-size {
+        align-self: center;
+      }
+    }
+  }
+}
+
+
+@media (min-width: 769px) and (max-width: 930px) {
+  @media (orientation: landscape) {
+    body {
+      justify-content: center;
+      padding: 20px;
+      column-gap: 20px;
+    }
+  
+    canvas {
+      order: 2;
+      width: 600px;
+      height: 90vh;
+    }
+  
+    .option-btns,
+    .color-options {
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+  
+    .color-options {
+      order: 1;
+    }
+    .option-btns {
+      order: 3;
+      grid-template-rows: repeat(5, 50px) 1fr;
+      grid-template-columns: repeat(4, 50px);
+      gap: 5px;
+    }
+    
+    label.color {
+      display: flex;
+      width: 45px;
+      height: 45px;
+      border: 5px solid #fff;
+      border-radius: 50%;
+    }
+  
+    span.title {
+      font-size: 20px;
+    }
+  
+    .color-option {
+      width: 45px;
+      height: 45px;
+      border: 5px solid #fff;
+    } 
+  
+    span.tool_title {
+      grid-row: 1;
+      grid-column: 1 / 5;
+    }
+  
+    button {
+      width: 50px;
+      height: 50px;
+    }
+  
+    label.upload {
+      width: 50px;
+      height: 50px;
+    }
+  
+    input#text {
+      grid-row: 4;
+      grid-column: 1 / 5;
+      height: 50px;
+    }
+  
+    .status {
+      grid-row: 5;
+      grid-column: 1/ 5;
+      height: 50px;
+    }
+  
+    .tools {
+      grid-row: 6;
+      grid-column: 1 / 5;
+    }
+  
+    .for-pen {
+      grid-template-columns: repeat(2, 50px);
+      grid-template-rows: 50px repeat(2, 1fr);
+      gap: 5px;
+    }
+  
+    .for-font {
+      grid-template-columns: repeat(3, 50px);
+      grid-template-rows: auto 50px repeat(2, 1fr);
+      gap: 5px;
+      justify-content: space-evenly;
+    }
+  
+    div.select-area {
+      grid-row: 1;
+      grid-column: 1 / 4;
+      width: 100%;
+      height: 30px;
+    }
+    
+    button.arrow {
+      height: 30px;
+    }
+    
+    ul.list {
+      width: 90%;
+      top: 41px;
+      justify-self: center;
+    }
+    
+    li {
+      height: 30px;
+    }
+  
+    .defaultFont,
+    .userFont {
+      width: 100%;
+      height: 30px;
+      justify-content: left;
+      text-indent: 10px;
+    }
+  
+    .bold {
+      grid-row: 2;
+      grid-column: 2;
+    }
+    .italic {
+      grid-row: 2;
+      grid-column: 3;
+    }
+  
+    .for-erase {
+      grid-template-columns: repeat(3, 50px);
+      grid-template-rows: 50px repeat(2, 1fr);
+      gap: 5px;
+      justify-content: space-evenly;
+    }
+    .for-erase>label {
+      grid-row: 2;
+      grid-column: 1 / 4;
+    }
+  
+    .erase-alert {
+      grid-column: 1/ 4;
+      grid-template-columns: repeat(2, 50px);
+      grid-template-rows: repeat(2, 50px);
+      justify-content: space-evenly;
+    }
+  
+    span.alert-q {
+      grid-row: 1;
+      grid-column: 1 / 3;
+      align-self: center;
+    }
+  
+    .pen-rect {
+      font-size: 20px;
+    }
+    .pen-round {
+      font-size: 20px;
+    }
+  
+    .tools>div>label {
+      grid-column: 1 / 3; 
+      justify-content: left;
+    }
+  
+    input#pen-size,
+    input#eraser-size,
+    input#font-size {
+      grid-column: 1 / 4;
+      align-self: center;
+    }
+  }
+  @media (orientation: portrait) {
+    body {
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 20px 10px;
+    }
+  
+    canvas {
+      order: 3;
+      width: 100%;
+      height: 70vh;
+    }
+  
+    .option-btns,
+    .color-options {
+      justify-content: space-evenly;
+      align-items: center;
+    }
+  
+    .color-options {
+      order: 1;
+    }
+  
+    .option-btns {
+      order: 2;
+      grid-template-columns: 70px repeat(8, 40px) 1fr;
+      grid-template-rows: repeat(2, 40px) 80px;
+      justify-content: space-between;
+      gap: 5px;
+    }
+    
+    label.color {
+      display: flex;
+      width: 30px;
+      height: 30px;
+      border: 5px solid #fff;
+      border-radius: 50%;
+    }
+  
+    .color-option {
+      width: 30px;
+      height: 30px; 
+      border: 5px solid #fff;
+    } 
+  
+    span.title {
+      font-size: 20px;
+    }
+  
+    span.tool_title {
+      grid-row: 1 / 3;
+      grid-column: 1;
+      text-align: center;
+    }
+  
+    button {
+      width: 40px;
+      height: 40px;
+    }
+  
+    label.upload {
+      width: 40px;
+      height: 40px;
+    }
+  
+    input#text {
+      height: 40px;
+      grid-row: 1;
+      grid-column: 10;
+    }
+  
+    .status {
+      grid-row: 2;
+      grid-column: 2 / 11;
+      height: 40px;
+    }
+  
+    .tools {
+      grid-row: 3;
+      grid-column: 1 / 11;
+    }
+  
+    .tools>div>label {
+      justify-content: center;
+    }
+  
+    .for-pen {
+      grid-template-columns: repeat(2, 40px) repeat(2, 1fr);
+      grid-template-rows: 40px;
+      column-gap: 5px;
+    }
+  
+    .for-font {
+      grid-template-columns: 130px repeat(3, 40px) repeat(2, 1fr);
+      grid-template-rows: 40px;
+      column-gap: 5px;
+    }
+  
+    div.select-area {
+      align-self: center;
+      height: 30px;
+    }
+    
+    button.arrow {
+      height: 30px;
+    }
+    
+    ul.list {
+      width: 130px;
+      top: 46px;
+      left: 10px;
+    }
+    
+    li {
+      height: 30px;
+    }
+  
+    .defaultFont,
+    .userFont {
+      width: 100%;
+      height: 30px;
+      justify-content: left;
+      text-indent: 8px;
+    }
+  
+    .for-erase {
+      grid-template-columns: repeat(3, 40px) repeat(2, 1fr);
+      grid-template-rows: 40px;
+      gap: 5px;
+      justify-content: space-evenly;
+    }
+  
+    .erase-alert {
+      width: 95%;
+      grid-row: 2;
+      grid-column: 1/7;
+      grid-template-columns: auto repeat(2, 40px);
+      grid-template-rows: 40px;
+      justify-content: space-evenly;
+    }
+  
+    span.alert-q {
+      grid-row: 1;
+      grid-column: 1 / 3;
+      align-self: center;
+    }
+  
+    button.alert-y,
+    button.alert-n {
+      grid-row: 1;
+    }
+  
+    .pen-rect,
+    .circle,
+    .pen-round,
+    .rect {
+      font-size: 20px;
+    }
+  
+    input#pen-size,
+    input#eraser-size,
+    input#font-size {
+      align-self: center;
+    }
+  }
+}
+
+@media (min-width: 500px) and (max-width: 768px) {
+  @media (orientation: landscape) and (hover: none) and (pointer: coarse) {
+    body {
+      justify-content: center;
+      padding: 20px;
+      column-gap: 20px;
+    }
+  
+    canvas {
+      order: 2;
+      width: 60vw;
+      height: 90vh;
+    }
+  
+    .option-btns,
+    .color-options {
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+  
+    .color-options {
+      order: 1;
+      height: 90vh;
+    }
+    .option-btns {
+      height: 90vh;
+      order: 3;
+      grid-template-rows: repeat(5, 30px) 1fr;
+      grid-template-columns: repeat(4, 30px);
+      gap: 5px;
+    }
+    
+    label.color {
+      display: flex;
+      width: 25px;
+      height: 25px;
+      border: 5px solid #fff;
+      border-radius: 50%;
+    }
+  
+    span.title {
+      font-size: 20px;
+    }
+  
+    .color-option {
+      width: 25px;
+      height: 25px;
+      border: 5px solid #fff;
+    } 
+  
+    span.tool_title {
+      grid-row: 1;
+      grid-column: 1 / 5;
+    }
+  
+    button {
+      width: 30px;
+      height: 30px;
+    }
+  
+    label.upload {
+      width: 30px;
+      height: 30px;
+    }
+  
+    input#text {
+      grid-row: 4;
+      grid-column: 1 / 5;
+      height: 30px;
+    }
+    input#text::placeholder {
+      font-size: 13px;
+    }
+    
+  
+    .status {
+      grid-row: 5;
+      grid-column: 1/ 5;
+      height: 30px;
+    }
+  
+    .tools {
+      grid-row: 6;
+      grid-column: 1 / 5;
+    }
+  
+    .for-pen {
+      grid-template-columns: repeat(2, 30px);
+      grid-template-rows: 30px repeat(2, 1fr);
+      gap: 5px;
+    }
+  
+    .for-font {
+      grid-template-columns: repeat(3, 30px);
+      grid-template-rows: auto 30px repeat(2, 1fr);
+      gap: 5px;
+      justify-content: space-evenly;
+    }
+  
+    div.select-area {
+      grid-row: 1;
+      grid-column: 1 / 4;
+      width: 100%;
+      height: 30px;
+    }
+    
+    button.arrow {
+      height: 30px;
+    }
+    
+    ul.list {
+      width: 90%;
+      top: 41px;
+      justify-self: center;
+    }
+    
+    li {
+      height: 30px;
+    }
+  
+    .defaultFont,
+    .userFont {
+      width: 100%;
+      height: 30px;
+      justify-content: left;
+      text-indent: 10px;
+    }
+  
+    .bold {
+      grid-row: 2;
+      grid-column: 2;
+    }
+    .italic {
+      grid-row: 2;
+      grid-column: 3;
+    }
+  
+    .for-erase {
+      grid-template-columns: repeat(3, 30px);
+      grid-template-rows: 30px repeat(2, 1fr);
+      gap: 5px;
+      justify-content: space-evenly;
+    }
+    .for-erase>label {
+      grid-row: 2;
+      grid-column: 1 / 4;
+    }
+  
+    .erase-alert {
+      grid-column: 1/ 4;
+      grid-template-columns: repeat(2, 30px);
+      grid-template-rows: repeat(2, 30px);
+      justify-content: space-evenly;
+    }
+  
+    span.alert-q {
+      grid-row: 1;
+      grid-column: 1 / 3;
+      align-self: center;
+    }
+  
+    .pen-rect {
+      font-size: 20px;
+    }
+    .pen-round {
+      font-size: 20px;
+    }
+  
+    .tools>div>label {
+      grid-column: 1 / 3; 
+      justify-content: left;
+    }
+  
+    input#pen-size,
+    input#eraser-size,
+    input#font-size {
+      grid-column: 1 / 4;
+      align-self: center;
+    }
+  }
+  @media (orientation: portrait) {
+    body {
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 20px 10px;
+    }
+  
+    canvas {
+      order: 3;
+      width: 100%;
+      height: 70vh;
+    }
+  
+    .option-btns,
+    .color-options {
+      justify-content: space-evenly;
+      align-items: center;
+    }
+  
+    .color-options {
+      order: 1;
+    }
+  
+    .option-btns {
+      order: 2;
+      grid-template-columns: 70px repeat(8, 40px);
+      grid-template-rows: repeat(2, 40px) 80px;
+      justify-content: space-between;
+      row-gap: 5px;
+    }
+    
+    label.color {
+      display: flex;
+      width: 30px;
+      height: 30px;
+      border: 5px solid #fff;
+      border-radius: 50%;
+    }
+  
+    .color-option {
+      width: 30px;
+      height: 30px; 
+      border: 5px solid #fff;
+    } 
+  
+    span.title {
+      font-size: 20px;
+    }
+  
+    span.tool_title {
+      grid-row: 1 / 3;
+      grid-column: 1;
+      text-align: center;
+    }
+  
+    button {
+      width: 40px;
+      height: 40px;
+    }
+  
+    label.upload {
+      width: 40px;
+      height: 40px;
+    }
+  
+    input#text {
+      height: 40px;
+      grid-row: 2;
+      grid-column: 2/7;
+    }
+  
+    .status {
+      grid-row: 2;
+      grid-column: 7 / 10;
+      height: 40px;
+    }
+  
+    .tools {
+      grid-row: 3;
+      grid-column: 1 / 10;
+    }
+  
+    .tools>div>label {
+      justify-content: center;
+    }
+  
+    .for-pen {
+      grid-template-columns: repeat(2, 40px) repeat(2, 1fr);
+      grid-template-rows: 40px;
+      column-gap: 5px;
+    }
+  
+    .for-font {
+      grid-template-columns: 110px repeat(3, 40px) repeat(2, 1fr);
+      grid-template-rows: 40px;
+      column-gap: 5px;
+    }
+  
+    div.select-area {
+      align-self: center;
+      width: 110px;
+      height: 30px;
+    }
+    
+    button.arrow {
+      height: 30px;
+    }
+    
+    ul.list {
+      width: 110px;
+      top: 46px;
+      left: 10px;
+    }
+    
+    li {
+      height: 30px;
+    }
+  
+    .defaultFont,
+    .userFont {
+      width: 100%;
+      height: 30px;
+      justify-content: left;
+      text-indent: 8px;
+    }
+  
+    .for-erase {
+      grid-template-columns: repeat(3, 40px) repeat(2, 1fr);
+      grid-template-rows: 40px;
+      gap: 5px;
+      justify-content: space-evenly;
+    }
+  
+    .erase-alert {
+      width: 95%;
+      grid-row: 2;
+      grid-column: 1/7;
+      grid-template-columns: auto repeat(2, 40px);
+      grid-template-rows: 40px;
+      justify-content: space-evenly;
+    }
+  
+    span.alert-q {
+      grid-row: 1;
+      grid-column: 1 / 3;
+      align-self: center;
+    }
+  
+    button.alert-y,
+    button.alert-n {
+      grid-row: 1;
+    }
+  
+    .pen-rect,
+    .circle,
+    .pen-round,
+    .rect {
+      font-size: 20px;
+    }
+  
+    input#pen-size,
+    input#eraser-size,
+    input#font-size {
+      align-self: center;
+    }
+  }
+}
+
+
+
+@media (max-width: 499px) and (orientation: portrait) and (hover: none) and (pointer: coarse) {
+
+  body {
+    width: 100%;
+    height: 100%;
+  }
+
+  body>span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    line-height: 1.5;
+    font-size: 16px;
+  }
+
+  canvas,
+  .color-options,
+  .option-btns {
+    display: none;
+  }
+}
+
+@media (max-height: 500px) and (orientation: landscape) and (hover: none) and (pointer: coarse) {
+  body {
+    width: 100%;
+    height: 100%;
+  }
+
+  body>span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    line-height: 1.5;
+    font-size: 16px;
+  }
+
+  canvas,
+  .color-options,
+  .option-btns {
+    display: none;
+  }
+}
