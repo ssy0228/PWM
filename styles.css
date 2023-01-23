@@ -23,6 +23,15 @@ canvas {
   border-radius: 15px;
   background-color: #fff;
   padding: 0;
+
+}
+
+@media (hover: none) and (pointer: coarse) {
+  canvas {
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+  }
 }
 
 button {
