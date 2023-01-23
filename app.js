@@ -74,8 +74,6 @@ function onShapeTouchMove(event) {
   } 
 }
 
-
-
 function onStartDrawing() {
   Drawing = true;
 }
@@ -374,7 +372,6 @@ function onAddTextMouse(event) {
     ctxs.fillText(message, event.offsetX, event.offsetY);
     ctxs.restore();
   }
-  canvas.removeEventListener("mousemove", onStrokeMouse);
 }
 
 function onAddTextTouch(event) {
