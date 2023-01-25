@@ -49,6 +49,7 @@ function onStrokeTouchStart(event) {
 
 function onStrokeTouchMove(event) {
   if (Drawing) {
+    Drawing = true;
     ctxs.lineTo(event.touches[0].clientX - canvas.offsetLeft, event.touches[0].clientY - canvas.offsetTop);
     ctxs.stroke();
     return;
