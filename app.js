@@ -43,11 +43,6 @@ function onStrokeMouse(event) {
 }
 
 function onStrokeTouchStart(event) {
-  ctxs.beginPath();
-  ctxs.moveTo(event.touches[0].clientX - canvas.offsetLeft, event.touches[0].clientY - canvas.offsetTop);
-}
-
-function onStrokeTouchMove(event) {
   if (Drawing) {
     Drawing = true;
     ctxs.lineTo(event.touches[0].clientX - canvas.offsetLeft, event.touches[0].clientY - canvas.offsetTop);
@@ -55,6 +50,13 @@ function onStrokeTouchMove(event) {
     return;
   } 
 }
+
+function onStrokeTouchMove(event) {
+  ctxs.beginPath();
+  ctxs.moveTo(event.touches[0].clientX - canvas.offsetLeft, event.touches[0].clientY - canvas.offsetTop);
+}
+
+
 
 function onShapeMouse(event) {
   if (Drawing) {
@@ -393,8 +395,7 @@ function onAddTextTouch(event) {
     canvas.removeEventListener("touchmove", onShapeTouchMove, { passive: false });
   } else { 
     canvas.addEventListener("touchstart", onStrokeTouchStart, { passive: false });
-    canvas.addEventListener("touchmove", onStrokeTouchMove, { passive: false });
-    canvas.addEventListener("touchmove", onShapeTouchMove, { passive: false });
+    canvas.addEventListener("touchmove", onStrokeTouchMove, { passive: false }) || canvas.addEventListener("touchmove", onShapeTouchMove, { passive: false });
   }
 }
 
