@@ -43,17 +43,17 @@ function onStrokeMouse(event) {
 }
 
 function onStrokeTouchStart(event) {
-  ctxs.beginPath();
-  ctxs.moveTo(event.touches[0].clientX - canvas.offsetLeft, event.touches[0].clientY - canvas.offsetTop);
-}
-
-function onStrokeTouchMove(event) {
   if (Drawing) {
     Drawing = true;
     ctxs.lineTo(event.touches[0].clientX - canvas.offsetLeft, event.touches[0].clientY - canvas.offsetTop);
     ctxs.stroke();
     return;
   } 
+}
+
+function onStrokeTouchMove(event) {
+  ctxs.beginPath();
+  ctxs.moveTo(event.touches[0].clientX - canvas.offsetLeft, event.touches[0].clientY - canvas.offsetTop);
 }
 
 
@@ -68,7 +68,7 @@ function onShapeMouse(event) {
   ctxs.moveTo(event.offsetX, event.offsetY);
 }
 
-function onShapeTouchMove(event) {
+function onShapeTouchStart(event) {
   if (Drawing) {
     ctxs.lineTo(event.touches[0].clientX - canvas.offsetLeft, event.touches[0].clientY - canvas.offsetTop);
     ctxs.fill();
@@ -182,7 +182,7 @@ function onPen() {
   } else {
     canvas.addEventListener("touchstart", onStrokeTouchStart, { passive: false });
     canvas.addEventListener("touchmove", onStrokeTouchMove, { passive: false });
-    canvas.removeEventListener("touchmove", onShapeTouchMove, { passive: false }); 
+    canvas.removeEventListener("touchstart", onShapeTouchStart, { passive: false }); 
   }
 }
 
@@ -193,7 +193,7 @@ function onEraser() {
   } else {
     canvas.addEventListener("touchstart", onStrokeTouchStart, { passive: false });
     canvas.addEventListener("touchmove", onStrokeTouchMove, { passive: false });
-    canvas.removeEventListener("touchmove", onShapeTouchMove), { passive: false };
+    canvas.removeEventListener("touchstart", onShapeTouchStart), { passive: false };
   }
 }
 
@@ -222,9 +222,9 @@ function onDrawShape() {
     canvas.removeEventListener("mousemove", onStrokeMouse);
     canvas.addEventListener("mousemove", onShapeMouse);
   } else {
-    canvas.addEventListener("touchstart", onStrokeTouchStart, { passive: false });
-    canvas.removeEventListener("touchmove", onStrokeTouchMove, { passive: false });
-    canvas.addEventListener("touchmove", onShapeTouchMove, { passive: false }); 
+    canvas.removeEventListener("touchstart", onStrokeTouchStart, { passive: false });
+    canvas.addEventListener("touchmove", onStrokeTouchMove, { passive: false });
+    canvas.addEventListener("touchstart", onShapeTouchStart, { passive: false }); 
   }
 }
 
