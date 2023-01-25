@@ -181,7 +181,7 @@ function onPen() {
   } else {
     canvas.addEventListener("touchstart", onStrokeTouchStart, { passive: false });
     canvas.addEventListener("touchmove", onStrokeTouchMove, { passive: false });
-    canvas.removeEventListener("touchmove", onShapeTouchMove, { passive: false });
+    canvas.removeEventListener("touchmove", onShapeTouchMove, { passive: false }); 
   }
 }
 
@@ -192,18 +192,16 @@ function onEraser() {
   } else {
     canvas.addEventListener("touchstart", onStrokeTouchStart, { passive: false });
     canvas.addEventListener("touchmove", onStrokeTouchMove, { passive: false });
-    canvas.removeEventListener("touchstart", onShapeTouchMove), { passive: false };
+    canvas.removeEventListener("touchmove", onShapeTouchMove), { passive: false };
   }
 }
 
 function onPenRect() {
   ctxs.lineCap = "square";
-
 }
 
 function onPenRound() {
   ctxs.lineCap = "round";
-
 }
 
 function onEraseRect() {
@@ -224,7 +222,8 @@ function onDrawShape() {
     canvas.addEventListener("mousemove", onShapeMouse);
   } else {
     canvas.addEventListener("touchstart", onStrokeTouchStart, { passive: false });
-    canvas.addEventListener("touchmove", onShapeTouchMove, { passive: false });
+    canvas.removeEventListener("touchmove", onStrokeTouchMove, { passive: false });
+    canvas.addEventListener("touchmove", onShapeTouchMove, { passive: false }); 
   }
 }
 
