@@ -172,8 +172,8 @@ function onPen() {
   if (window.navigator.maxTouchPoints === 0) {
     canvas.addEventListener("mousemove", onStrokeMouse);
     canvas.removeEventListener("mousemove", onShapeMouse);
-    
   } else {
+    canvas.removeEventListener("touchstart", onAddTextTouch, {passive: false});
     canvas.addEventListener("touchstart", onStrokeTouchStart, { passive: false });
     canvas.addEventListener("touchmove", onStrokeTouchMove, { passive: false });
     canvas.removeEventListener("touchstart", onShapeTouchStart, { passive: false }); 
@@ -185,6 +185,7 @@ function onEraser() {
     canvas.addEventListener("mousemove", onStrokeMouse);
     canvas.removeEventListener("mousemove", onShapeMouse);
   } else {
+    canvas.removeEventListener("touchstart", onAddTextTouch, {passive: false});
     canvas.addEventListener("touchstart", onStrokeTouchStart, { passive: false });
     canvas.addEventListener("touchmove", onStrokeTouchMove, { passive: false });
     canvas.removeEventListener("touchstart", onShapeTouchStart), { passive: false };
@@ -216,6 +217,7 @@ function onDrawShape() {
     canvas.removeEventListener("mousemove", onStrokeMouse);
     canvas.addEventListener("mousemove", onShapeMouse);
   } else {
+    canvas.removeEventListener("touchstart", onAddTextTouch, {passive: false});
     canvas.removeEventListener("touchstart", onStrokeTouchStart, { passive: false });
     canvas.addEventListener("touchmove", onStrokeTouchMove, { passive: false });
     canvas.addEventListener("touchstart", onShapeTouchStart, { passive: false }); 

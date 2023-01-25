@@ -26,13 +26,13 @@ canvas {
 
 }
 
-/* @media (hover: none) and (pointer: coarse) {
+@media (hover: none) and (pointer: coarse) {
   canvas {
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none; 
   }
-} */
+}
 
 button {
   all: unset;
