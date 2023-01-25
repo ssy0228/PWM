@@ -42,7 +42,7 @@ function onStrokeMouse(event) {
   ctxs.moveTo(event.offsetX, event.offsetY);
 }
 
-function onStrokeTouchStart(event) {
+function onStrokeTouchMove(event) {
   if (Drawing) {
     Drawing = true;
     ctxs.lineTo(event.touches[0].clientX - canvas.offsetLeft, event.touches[0].clientY - canvas.offsetTop);
@@ -50,13 +50,6 @@ function onStrokeTouchStart(event) {
     return;
   } 
 }
-
-function onStrokeTouchMove(event) {
-  ctxs.beginPath();
-  ctxs.moveTo(event.touches[0].clientX - canvas.offsetLeft, event.touches[0].clientY - canvas.offsetTop);
-}
-
-
 
 function onShapeMouse(event) {
   if (Drawing) {
@@ -105,7 +98,7 @@ if (window.navigator.maxTouchPoints === 0) {
     item.addEventListener("mousedown", onChangeColor);
   });
 } else {
-  canvas.addEventListener("touchstart", onStrokeTouchStart, { passive: false });
+  canvas.addEventListener("touchstart", onShapeStrokeTouchStart, { passive: false });
   canvas.addEventListener("touchmove", onStrokeTouchMove, { passive: false });
   canvas.addEventListener("touchstart", onStartDrawing, { passive: false });
   canvas.addEventListener("touchend", onCancleDrawing, { passive: false });
@@ -163,8 +156,8 @@ const Status = document.querySelector(".status");
 
 function onPen() {
   Filling = false;
-  ctxs.strokeStyle = setColor.value;
-  ctxs.stroke();
+  // ctxs.strokeStyle = setColor.value;
+  // ctxs.stroke();
   Status.innerText = "You can Draw!";
   if (Drawing) {
     Drawing = true;
@@ -174,9 +167,9 @@ function onPen() {
     canvas.removeEventListener("mousemove", onShapeMouse);
   } else {
     canvas.removeEventListener("touchstart", onAddTextTouch, {passive: false});
-    canvas.addEventListener("touchstart", onStrokeTouchStart, { passive: false });
+    canvas.addEventListener("touchstart", onShapeStrokeTouchStart, { passive: false });
     canvas.addEventListener("touchmove", onStrokeTouchMove, { passive: false });
-    canvas.removeEventListener("touchstart", onShapeTouchStart, { passive: false }); 
+    canvas.removeEventListener("touchmove", onShapeTouchMove, { passive: false }); 
   }
 }
 
@@ -186,9 +179,9 @@ function onEraser() {
     canvas.removeEventListener("mousemove", onShapeMouse);
   } else {
     canvas.removeEventListener("touchstart", onAddTextTouch, {passive: false});
-    canvas.addEventListener("touchstart", onStrokeTouchStart, { passive: false });
+    canvas.addEventListener("touchstart", onShapeStrokeTouchStart, { passive: false });
     canvas.addEventListener("touchmove", onStrokeTouchMove, { passive: false });
-    canvas.removeEventListener("touchstart", onShapeTouchStart), { passive: false };
+    canvas.removeEventListener("touchmove", onShapeTouchMove, { passive: false }); 
   }
 }
 
@@ -199,6 +192,14 @@ function onPenRect() {
 function onPenRound() {
   ctxs.lineCap = "round";
 }
+
+function onFontOn() {
+  canvas.addEventListener("touchstart", onAddTextTouch, { passive: false });
+  canvas.removeEventListener("touchstart", onShapeStrokeTouchStart, { passive: false });
+  canvas.removeEventListener("touchmove", onStrokeTouchMove, { passive: false });
+  canvas.removeEventListener("touchmove", onShapeTouchMove, { passive: false }); 
+}
+
 
 function onEraseRect() {
   ctxs.lineCap = "square";
@@ -218,13 +219,13 @@ function onDrawShape() {
     canvas.addEventListener("mousemove", onShapeMouse);
   } else {
     canvas.removeEventListener("touchstart", onAddTextTouch, {passive: false});
-    canvas.removeEventListener("touchstart", onStrokeTouchStart, { passive: false });
-    canvas.addEventListener("touchmove", onStrokeTouchMove, { passive: false });
-    canvas.addEventListener("touchstart", onShapeTouchStart, { passive: false }); 
+    canvas.removeEventListener("touchmove", onStrokeTouchMove, { passive: false });
+    canvas.addEventListener("touchstart", onShapeStrokeTouchStart, { passive: false }); 
+    canvas.addEventListener("touchmove", onShapeTouchMove, { passive: false }); 
   }
 }
 
-function onShapeTouchStart(event) {
+function onShapeTouchMove(event) {
   if (Drawing) {
     Drawing = true;
     ctxs.lineTo(event.touches[0].clientX - canvas.offsetLeft, event.touches[0].clientY - canvas.offsetTop);
@@ -232,6 +233,12 @@ function onShapeTouchStart(event) {
     return;
   } 
 }
+
+function onShapeStrokeTouchStart(event) {
+  ctxs.beginPath();
+  ctxs.moveTo(event.touches[0].clientX - canvas.offsetLeft, event.touches[0].clientY - canvas.offsetTop);
+}
+
 
 
 function onFillCanvas() {
@@ -257,6 +264,7 @@ if (window.navigator.maxTouchPoints === 0) {
   PenBtn.addEventListener("touchstart", onPen, { passive: false });
   Pen_Rect.addEventListener("touchstart", onPenRect, { passive: false });
   Pen_Round.addEventListener("touchstart", onPenRound, { passive: false });
+  FontBtn.addEventListener("touchstart", onFontOn, {passive: false});
   EraserBtn.addEventListener("touchstart", onEraser, { passive: false });
   Erase_Rect.addEventListener("touchstart", onEraseRect, { passive: false });
   Erase_Round.addEventListener("touchstart", onEraseRound, { passive: false });
@@ -390,8 +398,9 @@ function onAddTextTouch(event) {
     ctxs.lineWidth = 1;
     ctxs.fillText(message, event.touches[0].clientX - canvas.offsetLeft, event.touches[0].clientY - canvas.offsetTop);
     ctxs.restore();
-    canvas.removeEventListener("touchstart", onStrokeTouchStart, { passive: false });
+    canvas.removeEventListener("touchstart", onShapeStrokeTouchStart, { passive: false });
     canvas.removeEventListener("touchmove", onStrokeTouchMove, { passive: false });
+    canvas.removeEventListener("touchmove", onShapeTouchMove, { passive: false }); 
   }
 }
 
