@@ -43,6 +43,11 @@ function onStrokeMouse(event) {
 }
 
 function onStrokeTouchStart(event) {
+  ctxs.beginPath();
+  ctxs.moveTo(event.touches[0].clientX - canvas.offsetLeft, event.touches[0].clientY - canvas.offsetTop);
+}
+
+function onStrokeTouchMove(event) {
   if (Drawing) {
     Drawing = true;
     ctxs.lineTo(event.touches[0].clientX - canvas.offsetLeft, event.touches[0].clientY - canvas.offsetTop);
@@ -50,12 +55,6 @@ function onStrokeTouchStart(event) {
     return;
   } 
 }
-
-function onStrokeTouchMove(event) {
-  ctxs.beginPath();
-  ctxs.moveTo(event.touches[0].clientX - canvas.offsetLeft, event.touches[0].clientY - canvas.offsetTop);
-}
-
 
 function onShapeMouse(event) {
   if (Drawing) {
@@ -66,14 +65,6 @@ function onShapeMouse(event) {
   }
   ctxs.beginPath();
   ctxs.moveTo(event.offsetX, event.offsetY);
-}
-
-function onShapeTouchStart(event) {
-  if (Drawing) {
-    ctxs.lineTo(event.touches[0].clientX - canvas.offsetLeft, event.touches[0].clientY - canvas.offsetTop);
-    ctxs.fill();
-    return;
-  } 
 }
 
 function onStartDrawing() {
@@ -227,6 +218,16 @@ function onDrawShape() {
     canvas.addEventListener("touchstart", onShapeTouchStart, { passive: false }); 
   }
 }
+
+function onShapeTouchStart(event) {
+  if (Drawing) {
+    Drawing = true;
+    ctxs.lineTo(event.touches[0].clientX - canvas.offsetLeft, event.touches[0].clientY - canvas.offsetTop);
+    ctxs.fill();
+    return;
+  } 
+}
+
 
 function onFillCanvas() {
   Drawing = false;
