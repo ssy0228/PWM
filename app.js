@@ -172,6 +172,7 @@ function onPen() {
   if (window.navigator.maxTouchPoints === 0) {
     canvas.addEventListener("mousemove", onStrokeMouse);
     canvas.removeEventListener("mousemove", onShapeMouse);
+    
   } else {
     canvas.addEventListener("touchstart", onStrokeTouchStart, { passive: false });
     canvas.addEventListener("touchmove", onStrokeTouchMove, { passive: false });
@@ -263,6 +264,7 @@ if (window.navigator.maxTouchPoints === 0) {
 
 const fontSelect = document.querySelector(".selection");
 const arrowBtn = document.querySelector(".arrow");
+const arrow = document.querySelector(".arrow>span");
 const fontList = document.querySelector(".list");
 const Default = document.querySelector(".defaultFont");
 const Users = document.querySelector(".userFont");
@@ -271,8 +273,6 @@ const Bold = document.querySelector(".bold");
 const Italic = document.querySelector(".italic");
 
 function ArrowAct() {
-  const arrow = document.querySelector(".arrow>span");
-
   arrow.classList.toggle("clicked");
   fontList.classList.toggle("close");
 }
@@ -284,6 +284,7 @@ function onNanumGothic(event) {
     ctxs.font = String(fontSize.value) + "px " + "NanumGothic";
     sessionStorage.setItem("font", "NanumGothic");
   });
+  arrow.classList.add("clicked");
   fontList.classList.add("close");
 }
 
@@ -294,6 +295,7 @@ function onHahmlet(event) {
     ctxs.font = String(fontSize.value) + "px " + "Hahmlet";
     sessionStorage.setItem("font", "Hahmlet");
   });
+  arrow.classList.add("clicked");
   fontList.classList.add("close");
 }
 
@@ -313,7 +315,7 @@ function onItalic(event) {
 }
 
 if (window.navigator.maxTouchPoints === 0) {
-  arrowBtn.addEventListener("mousedown", ArrowAct);
+  arrowBtn.addEventListener("click", ArrowAct);
   Default.addEventListener("mousedown", onNanumGothic);
   Users.addEventListener("mousedown", onHahmlet);
   Normal.addEventListener("mousedown", onNormal);
@@ -377,10 +379,6 @@ function onAddTextMouse(event) {
     canvas.removeEventListener("mousemove", onStrokeMouse);
     canvas.removeEventListener("mousemove", onShapeMouse);
   }
-  else { 
-    canvas.addEventListener("mousemove", onStrokeMouse);
-    canvas.addEventListener("mousemove", onShapeMouse);
-  }
 }
 
 function onAddTextTouch(event) {
@@ -392,10 +390,6 @@ function onAddTextTouch(event) {
     ctxs.restore();
     canvas.removeEventListener("touchstart", onStrokeTouchStart, { passive: false });
     canvas.removeEventListener("touchmove", onStrokeTouchMove, { passive: false });
-    canvas.removeEventListener("touchmove", onShapeTouchMove, { passive: false });
-  } else { 
-    canvas.addEventListener("touchstart", onStrokeTouchStart, { passive: false });
-    canvas.addEventListener("touchmove", onStrokeTouchMove, { passive: false }) || canvas.addEventListener("touchmove", onShapeTouchMove, { passive: false });
   }
 }
 
