@@ -156,8 +156,6 @@ const Status = document.querySelector(".status");
 
 function onPen() {
   Filling = false;
-  // ctxs.strokeStyle = setColor.value;
-  // ctxs.stroke();
   Status.innerText = "You can Draw!";
   if (Drawing) {
     Drawing = true;
@@ -186,10 +184,14 @@ function onEraser() {
 }
 
 function onPenRect() {
+  ctxs.strokeStyle = setColor.value;
+  ctxs.stroke();
   ctxs.lineCap = "square";
 }
 
 function onPenRound() {
+  ctxs.strokeStyle = setColor.value;
+  ctxs.stroke();
   ctxs.lineCap = "round";
 }
 
